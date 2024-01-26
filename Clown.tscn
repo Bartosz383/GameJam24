@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwja2fpmfhgwm"]
+
+[ext_resource type="Texture2D" uid="uid://cik1dyiin0cog" path="res://TOTALNYSZEF.png" id="1_j6dt5"]
+
+[sub_resource type="GDScript" id="GDScript_edgbw"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+func _physics_process(delta):
+	var direction = Vector2(Input.get_action_strength(\"ui_right\") - Input.get_action_strength(\"ui_left\"),Input.get_action_strength(\"ui_down\") - Input.get_action_strength(\"ui_up\"))
+	print(direction)
+	velocity = direction * SPEED
+	if direction > 0:
+		
+	move_and_slide()
+
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6gan"]
+size = Vector2(33, 49)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(575, 262)
+script = SubResource("GDScript_edgbw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.00002, 1)
+scale = Vector2(0.287384, 0.28851)
+texture = ExtResource("1_j6dt5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_s6gan")
